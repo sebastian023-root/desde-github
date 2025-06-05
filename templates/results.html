@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados del Análisis</h1>
+        
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='uploads/' + image_with_boxes) }}" alt="Imagen analizada">
+        </div>
+        
+        <div class="results">
+            <h2>Objetos detectados:</h2>
+            <ul>
+                {% for obj in objects %}
+                    <li>{{ obj }}</li>
+                {% endfor %}
+            </ul>
+            
+            <h2>Conteo:</h2>
+            <ul>
+                {% for obj, count in counts.items() %}
+                    <li>{{ obj }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('upload_file') }}" class="button">Nueva Imagen</a>
+    </div>
+</body>
+</html>
